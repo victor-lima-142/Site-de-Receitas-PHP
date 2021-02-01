@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReceitaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Route::get('/criar-receita', function () {
     return view('receita.criar');
 });
+Route::post('/criar-receita', [ReceitaController::class, "store"]);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

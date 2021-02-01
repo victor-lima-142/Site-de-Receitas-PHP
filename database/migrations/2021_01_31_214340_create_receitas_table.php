@@ -17,13 +17,13 @@ class CreateReceitasTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('origem')->nullable();
-            $table->string('tempo', 4);
+            $table->string('tempo', 10);
             $table->text('ingredientes');
             $table->longText('preparo');
-            $table->text('foto');
+            $table->text('foto')->nullable();
 
-            $table->bigInteger('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
+            // $table->bigInteger('user')->unsigned();
+            // $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -21,11 +21,14 @@
 
     @yield('conteudo')
 
-    @include('layouts.footer')
+    @auth
+        @include('chat')
+    @endauth
 
-    @include('chat')
-
-
+    @if (Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register')
+    @else
+        @include('layouts.footer')
+    @endif
 
 
     <!-- Optional JavaScript; choose one of the two! -->
