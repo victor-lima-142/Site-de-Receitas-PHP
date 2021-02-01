@@ -26,91 +26,23 @@
         </a>
     </div>
 
-    <div class="container-fluid mt-2 p-4">
+    <div class="container mt-2 p-2">
         <div class="row">
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+            @foreach ($receitas as $receita)
+                <div class="col-4">
+                    <div class="card shadow border-0">
+                        <div class="card-body text-center">
+                            <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
+                                alt="...">
+                            <h5 class="card-title text-center">{{ $receita->nome }}</h5>
+                            <div class="text-center">
+                                <a href="#" class="card-link">{{ $receita->tempo }}</a>
+                                <a href="#" class="card-link">{{ $receita->origem }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row mt-5">
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow border-0">
-                    <div class="card-body text-center">
-                        <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                            alt="...">
-                        <h5 class="card-title text-center">Card title</h5>
-                        <div class="text-center">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

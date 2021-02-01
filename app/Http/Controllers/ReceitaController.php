@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Receita;
 use Error;
+use Illuminate\Support\Facades\Auth;
 
 class ReceitaController extends Controller
 {
@@ -26,13 +27,19 @@ class ReceitaController extends Controller
                 'foto' => $request->foto,
                 'ingredientes' => $request->ingredientes,
                 'preparo' => $request->preparo,
-                // 'user' => 1
+                'user' => Auth::user()->id
             ]);
             $receita->save();
 
-            return redirect('/');
+            return $receita;
         } catch (Error $th) {
             return $th->getMessage();
         }
+    }
+
+    public function minhasReceitas(Request $request)
+    {
+        $receitas = Receita::where('user', $request->user)->get();
+        return view('receita.minhas-receitas', compact('receitas'));
     }
 }

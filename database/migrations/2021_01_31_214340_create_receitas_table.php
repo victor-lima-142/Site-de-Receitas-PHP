@@ -21,9 +21,8 @@ class CreateReceitasTable extends Migration
             $table->text('ingredientes');
             $table->longText('preparo');
             $table->text('foto')->nullable();
-
-            // $table->bigInteger('user')->unsigned();
-            // $table->foreign('user')->references('id')->on('users');
+            $table->bigInteger('user')->unsigned();
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }
