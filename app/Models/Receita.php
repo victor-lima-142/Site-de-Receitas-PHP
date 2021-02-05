@@ -13,7 +13,8 @@ class Receita extends Model
     protected $primarykey = "id";
 
     protected $fillable = [
-        'nome', 'origem', 'tempo', 'ingredientes',
+        'categoria', 'nome', 'origem',
+        'tempo', 'ingredientes', 'avaliacao_geral',
         'preparo', 'foto', 'user'
     ];
 }

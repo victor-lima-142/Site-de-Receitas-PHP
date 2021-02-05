@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     use HasFactory;
+    protected $primarykey = 'id';
+    protected $fillable = [
+        'nome_menu',
+    ];
 }

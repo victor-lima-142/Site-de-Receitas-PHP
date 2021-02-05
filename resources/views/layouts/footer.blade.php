@@ -1,4 +1,4 @@
-<footer class="page-footer border bg-light p-3 mt-2">
+<footer class="page-footer border bg-light p-3">
 
     <!--Footer Links-->
     <div class="container-fluid">

@@ -19,39 +19,23 @@ class ReceitaController extends Controller
 
     public function store(Request $request)
     {
-        // Define o valor default para a variável que contém o nome da imagem 
-        $nameFile = null;
+        try {
+            $receita = new Receita([
+                'user' => Auth::user()->id,
+                'categoria' => $request->categoria,
+                'nome' => $request->nome,
+                'origem' => $request->origem,
+                'tempo' => $request->tempo,
+                'ingredientes' => $request->ingredientes,
+                'avaliacao_geral' => $request->avaliacao_geral,
+                'preparo' => $request->preparo,
+                'foto' => $request->foto
+            ]);
+            $receita->save();
 
-        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-            $foto = $request->foto->getClientOriginalName();
-
-            dd(time());
-            $name = uniqid(date('HisYmd'));
-            $extension = $request->foto->extension();
-            $nameFile = "{}.{$name}.{$extension}";
-            dd($nameFile);
-            $upload = $request->foto->storeAs('database/foto-de-receitas', $nameFile);
-            if (!$upload) {
-                return 'falha ao fazer upload';
-            } else {
-                try {
-                    $tempo = $request->tempo . " minutos";
-                    $receita = new Receita([
-                        'nome' => $request->nome,
-                        'origem' => $request->origem,
-                        'tempo' => $tempo,
-                        'foto' => $request->foto,
-                        'ingredientes' => $request->ingredientes,
-                        'preparo' => $request->preparo,
-                        'user' => Auth::user()->id
-                    ]);
-                    $receita->save();
-
-                    return $receita;
-                } catch (Error $th) {
-                    return $th->getMessage();
-                }
-            }
+            return redirect('/', 201)->with('success', 'Criado com sucesso');
+        } catch (Error $th) {
+            return $th->getMessage();
         }
     }
 

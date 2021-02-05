@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ReceitaController;
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +23,11 @@ Route::get('/', [Controller::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/criar-receita', function () {
-        return view('receita.criar');
+        $categorias = Categoria::all();
+        return view('receita.criar', compact('categorias'));
     });
 
-    Route::post('/criar-receita', [ReceitaController::class, "store"]);
+    Route::post('/criar-receita', [ReceitaController::class, "store"])->name('receita.post');
 });
 Auth::routes();
 
