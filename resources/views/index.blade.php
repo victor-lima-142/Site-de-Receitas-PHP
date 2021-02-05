@@ -1,7 +1,9 @@
 @extends('layouts.layout')
+
 @section('titulo')
     Inicio
 @endsection
+
 @section('conteudo')
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">

@@ -18,11 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'index']);
 
-Route::get('/criar-receita', function () {
-    return view('receita.criar');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/criar-receita', function () {
+        return view('receita.criar');
+    });
+
+    Route::post('/criar-receita', [ReceitaController::class, "store"]);
 });
-Route::post('/criar-receita', [ReceitaController::class, "store"]);
 Auth::routes();
 
 Route::get('/minhas-receitas/{user}', [ReceitaController::class, 'minhasReceitas']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -7,7 +7,7 @@
     <div class="container-fluid p-3 text-center">
         <h4 class="fw-lighter">Adicionar uma receita</h4>
         <div class="card w-75 pt-4 p-2 mx-auto">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
                 {{-- NOME DO PRATO E ORIGEM --}}
                 <div class="d-flex justify-content-between align-items-center">
