@@ -31,6 +31,8 @@
         @include('layouts.footer')
     @endif
 
+    @include('modal.criar')
+
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"

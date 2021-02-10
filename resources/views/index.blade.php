@@ -30,21 +30,27 @@
 
     <div class="container mt-2 p-2">
         <div class="row">
-            @foreach ($receitas as $receita)
-                <div class="col-4">
-                    <div class="card shadow border-0">
-                        <div class="card-body text-center">
-                            <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg" class="card-imagem"
-                                alt="...">
-                            <h5 class="card-title text-center">{{ $receita->nome }}</h5>
-                            <div class="text-center">
-                                <a href="#" class="card-link">{{ $receita->tempo }}</a>
-                                <a href="#" class="card-link">{{ $receita->origem }}</a>
+            @foreach ($receitas->take(9) as $receita)
+                <div class="col-4 mt-4">
+                    <a href="#">
+                        <div class="card shadow border-0">
+                            <div class="card-body text-center">
+                                <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg"
+                                    class="card-imagem" alt="...">
+                                <h5 class="card-title text-center">{{ $receita->nome }}</h5>
+                                <div class="text-center text-secondary">
+                                    <span>{{ $receita->tempo }} min</span>
+                                    &nbsp;
+                                    <span> {{ $receita->origem }}</span>
+                                    &nbsp;
+                                    <span>{{ $receita->avaliacao_geral }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
     </div>
+    <div class="w-100 mt-3"></div>
 @endsection

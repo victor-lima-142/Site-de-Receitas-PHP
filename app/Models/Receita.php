@@ -15,6 +15,6 @@ class Receita extends Model
     protected $fillable = [
         'categoria', 'nome', 'origem',
         'tempo', 'ingredientes', 'avaliacao_geral',
-        'preparo', 'foto', 'user'
+        'preparo', 'user'
     ];
 }
