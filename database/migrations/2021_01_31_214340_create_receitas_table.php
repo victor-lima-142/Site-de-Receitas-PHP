@@ -16,9 +16,7 @@ class CreateReceitasTable extends Migration
         Schema::create('receitas', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('categoria')->unsigned();
-            $table->foreign('categoria')->references('id')->on('categorias');
-
+            $table->string('categoria');
             $table->string('nome');
             $table->string('origem');
             $table->string('tempo', 10);

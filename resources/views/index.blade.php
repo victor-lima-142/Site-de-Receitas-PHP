@@ -30,9 +30,9 @@
 
     <div class="container mt-2 p-2">
         <div class="row">
-            @foreach ($receitas->take(9) as $receita)
+            @foreach ($receitas->take(6) as $receita)
                 <div class="col-4 mt-4">
-                    <a href="#">
+                    <a href="/receita/{{ $receita->id }}">
                         <div class="card shadow border-0">
                             <div class="card-body text-center">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/2424/2424986.svg"

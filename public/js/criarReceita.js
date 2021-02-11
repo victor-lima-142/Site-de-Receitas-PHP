@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     $("#criar-botao-excluir-receita").hide();
     $("#formulario-ingrediente").hide();
-    $("#dados").hide();
+    $("#dados-da-receita").hide();
     $("#dados-dos-ingredientes").hide();
 
     $("#enviaPOST").click(function (e) {
@@ -36,16 +36,20 @@ $(document).ready(function () {
                 idReceita.id = result.id;
 
                 $("#formulario-criacao").hide();
-                $("#dados").show();
+                $("#dados-da-receita").show();
+                $("#criar-botao-excluir-receita").show();
+                $("#ingrediente-label-form").show();
+
+
                 $('#criar-botao-excluir-receita').append(
-                    "<a href='/excluir-receita/" + idReceita +
+                    "<a href='/excluir-receita/" + idReceita.id +
                     "'><btn class='btn btn-outline-danger' id='excluir-receita'>Excluir</btn></a>"
                 )
-                $("#criar-botao-excluir-receita").show();
 
                 document.getElementById('nome-receita').innerHTML = 'Nome: ' + nome + ' - Código: ' + idReceita.id;
                 document.getElementById('origem-receita').innerHTML = 'Origem: ' + origem;
                 document.getElementById('tempo-receita').innerHTML = 'Tempo: ' + tempo + ' minutos';
+
 
                 console.log(result);
             },
@@ -62,6 +66,7 @@ $(document).ready(function () {
     });
 
     $("#postarIngrediente").click(function (e) {
+
         e.preventDefault();
 
         var ingrediente = $("input[name=ingrediente]").val();
@@ -76,13 +81,12 @@ $(document).ready(function () {
                 receita: idReceita.id
             },
             success: function (response) {
-                document.getElementById('formulario-ingrediente').reset();
-                console.log(response);
                 $("#formulario-ingrediente").hide();
                 $("#dados-dos-ingredientes").show();
+                console.log(response);
 
-                $('ul#lista-ingredientes').append("<li class='list-group-item'>" +
-                    ingrediente + "</li>")
+                var frase = quantidade + " de " + ingrediente;
+                $('ul#listagem-ing').append("<li class='list-group-item'>" + frase + "</li>")
             },
             error: function (response) {
                 alert(idReceita.id);

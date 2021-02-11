@@ -1,8 +1,3 @@
-@php
-$categorias = App\Models\Categoria::all();
-@endphp
-
-
 <nav class="navbar navbar-expand-lg p-1 navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Receitas</a>
@@ -21,16 +16,16 @@ $categorias = App\Models\Categoria::all();
                         Categorias
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach ($categorias as $categoria)
-                            <li>
-                                <a href="/categoria/{{ $categoria->id }}"
-                                    class="dropdown-item">{{ $categoria->nome_menu }}</a>
-                            </li>
-                        @endforeach
+                        <li>
+                            <a href="/categoria/Salgado" class="dropdown-item">Salgados</a>
+                            <a href="/categoria/Doce" class="dropdown-item">Doces</a>
+                            <a href="/categoria/Pratos Finos" class="dropdown-item">Pratos Finos</a>
+                            <a href="/categoria/Sobremesas" class="dropdown-item">Sobremesas</a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Todas</a></li>
+                        <li><a class="dropdown-item" href="/lista-receitas">Todas</a></li>
                     </ul>
                 </li>
                 @include('layouts.auth-links')

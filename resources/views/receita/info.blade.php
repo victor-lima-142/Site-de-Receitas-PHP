@@ -31,11 +31,20 @@
                 </div>
                 <hr class="dropdown-divider">
                 <div id="ingredientes">
-                    <p>
-                        {{ $dado->ingredientes }}
-                    </p>
+                    <ul class="list-group text-start">
+                        @foreach ($ingredientes as $ingrediente)
+                            <li class="list-group-item">
+                                {{ $ingrediente->quantidade . ' de ' . $ingrediente->nome }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
+            </div>
+        </div>
 
+        <div class="row ms-3 mt-4 me-1">
+            <div class="col rounded border shadow">
+                <h1 class="fw-lighter text-center">Preparo</h1>
             </div>
         </div>
     </div>

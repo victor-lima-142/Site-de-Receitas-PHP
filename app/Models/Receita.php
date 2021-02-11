@@ -17,4 +17,14 @@ class Receita extends Model
         'tempo', 'ingredientes', 'avaliacao_geral',
         'preparo', 'user'
     ];
+
+    public function ingrediente()
+    {
+        return $this->hasMany(Ingrediente::class);
+    }
+
+    public function passo()
+    {
+        return $this->hasMany(Passo::class);
+    }
 }

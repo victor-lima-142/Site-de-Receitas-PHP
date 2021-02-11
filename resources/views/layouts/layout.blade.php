@@ -26,12 +26,18 @@
         @include('chat')
     @endauth
 
-    @if (Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register')
+    @if (Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register' || Route::currentRouteName() == 'logout' || Route::currentRouteName() == 'receita.view-criar')
     @else
         @include('layouts.footer')
+        <a href="/criar-receita">
+            <button class="btn btn-primary btn-modal-criar-receitas">
+                Criar
+            </button>
+        </a>
+
     @endif
 
-    @include('modal.criar')
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->

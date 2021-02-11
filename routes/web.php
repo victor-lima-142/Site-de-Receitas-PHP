@@ -26,18 +26,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/criar-receita', function () {
         $categorias = Categoria::all();
         return view('receita.create-receitas', compact('categorias'));
-    });
+    })->name('receita.view-criar');
 
     Route::post('/criar-receita', [ReceitaController::class, "store"])->name('receita.post');
 
     Route::post('/excluir-receita/{id}', [ReceitaController::class, "delete"]);
 
-    Route::get('lista-receitas', [ReceitaController::class, 'listar']);
-
     Route::get('/receita/{receita}', [ReceitaController::class, 'info']);
 
     Route::post('/adicionar-ingrediente', [IngredienteController::class, 'store'])->name('ingredientes.adicionar');
-});
-Auth::routes();
 
-Route::get('/minhas-receitas/{user}', [ReceitaController::class, 'minhasReceitas']);
+    Route::get('/minhas-receitas/{user}', [ReceitaController::class, 'minhasReceitas']);
+});
+
+Route::get('lista-receitas', [ReceitaController::class, 'index']);
+Route::get('/categoria/{categoria}', [ReceitaController::class, 'filtro'])->name('receita.filtrada');
+
+Auth::routes();

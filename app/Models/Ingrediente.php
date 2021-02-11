@@ -13,4 +13,9 @@ class Ingrediente extends Model
     protected $fillable = [
         'nome', 'quantidade'
     ];
+
+    public function receita()
+    {
+        return $this->belongsTo(Receita::class);
+    }
 }

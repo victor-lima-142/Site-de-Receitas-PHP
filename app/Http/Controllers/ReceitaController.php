@@ -13,8 +13,8 @@ class ReceitaController extends Controller
 {
     public function index()
     {
-        $listagem = Receita::where('avaliacao_geral', '<', 1)->get();
-        return view('index', compact('listagem'));
+        $receitas = Receita::all();
+        return view('receita.todas', compact('receitas'));
     }
 
     public function store(Request $request)
@@ -38,22 +38,17 @@ class ReceitaController extends Controller
         return response('ok', 200);
     }
 
-    public function listar()
-    {
-        $receitas = Receita::all();
-        return view('receita.todas', compact('receitas'));
-    }
-
     public function filtro(Request $request)
     {
-        $receitas = DB::table('receitas')->where('categoria', "=", $request->coluna)->get();
+        $receitas = DB::table('receitas')->where('categoria', "=", $request->categoria)->get();
         return view('receita.todas', compact('receitas'));
     }
 
     public function info(Request $request)
     {
+        $ingredientes = DB::table('ingredientes')->where('receita', '=', $request->receita)->get();
         $dados = DB::table('receitas')->where('id', '=', $request->receita)->get();
-        return view('receita.info', compact('dados'));
+        return view('receita.info', compact('dados', 'ingredientes'));
     }
 
     public function delete(Request $request)
