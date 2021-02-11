@@ -55,7 +55,6 @@ class ReceitaController extends Controller
     {
         $receita = DB::table('receitas')
             ->where('id', '=', $request->id)->delete();
-
-        return response()->json($receita, 200);
+        return back();
     }
 }

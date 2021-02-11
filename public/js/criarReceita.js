@@ -7,10 +7,17 @@ $(document).ready(function () {
 
     var idReceita = {};
 
+    var contadorPreparo = {};
+    contadorPreparo.contador = 0;
+
     $("#criar-botao-excluir-receita").hide();
     $("#formulario-ingrediente").hide();
     $("#dados-da-receita").hide();
     $("#dados-dos-ingredientes").hide();
+    $("#excluir-botao").hide();
+    $("#excluir-botao-preparo").hide();
+    $("#formulario-preparo").hide();
+    $("#segundo-passo-da-receita").hide();
 
     $("#enviaPOST").click(function (e) {
 
@@ -52,6 +59,8 @@ $(document).ready(function () {
 
 
                 console.log(result);
+
+                $("#segundo-passo-da-receita").slideDown();
             },
             error: function (result) {
                 console.log(result)
@@ -62,11 +71,35 @@ $(document).ready(function () {
 
 
     $("#adicionar-botao").click(function (e) {
-        $("#formulario-ingrediente").show();
+        $("#formulario-ingrediente").slideDown();
+        $("#excluir-botao").show();
+        $("#adicionar-botao").hide();
     });
 
-    $("#postarIngrediente").click(function (e) {
+    $("#excluir-botao").click(function (e) {
+        $("#formulario-ingrediente").slideUp();
+        $("#excluir-botao").hide();
+        $("#adicionar-botao").show();
+    });
 
+    $("#excluir-botao-preparo").click(function (e) {
+        $("#formulario-preparo").slideUp();
+        $("#excluir-botao-preparo").hide();
+        $("#adicionar-preparo-botao").show();
+    });
+
+    $("#adicionar-preparo-botao").click(function (e) {
+        $("#formulario-preparo").slideDown();
+        $("#excluir-botao-preparo").show();
+        $("#adicionar-preparo-botao").hide();
+    });
+
+
+
+
+
+
+    $("#postarIngrediente").click(function (e) {
         e.preventDefault();
 
         var ingrediente = $("input[name=ingrediente]").val();
@@ -81,9 +114,13 @@ $(document).ready(function () {
                 receita: idReceita.id
             },
             success: function (response) {
-                $("#formulario-ingrediente").hide();
+                $("#formulario-ingrediente").slideUp();
                 $("#dados-dos-ingredientes").show();
+                $("#excluir-botao").hide();
                 console.log(response);
+                document.getElementsById('quantidade').value = '';
+                document.getElementsById('ingrediente').value = '';
+                $("#dados-dos-ingredientes").show();
 
                 var frase = quantidade + " de " + ingrediente;
                 $('ul#listagem-ing').append("<li class='list-group-item'>" + frase + "</li>")
@@ -92,5 +129,47 @@ $(document).ready(function () {
                 alert(idReceita.id);
             }
         });
-    })
+    });
+
+
+
+
+
+
+
+    $("#postarPasso").click(function (e) {
+
+
+        e.preventDefault();
+
+        var descricao = document.getElementById('passo-textarea').value;
+
+
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8000/adicionar-passo",
+            data: {
+                descricao: descricao,
+                receita: idReceita.id
+            },
+            success: function (response) {
+                $("#excluir-botao-preparo").hide();
+                $("#formulario-preparo").hide();
+                $("#adicionar-preparo-botao").show();
+                $('#dados-dos-passos').show();
+                $("#adicionar-botao").show();
+
+                contadorPreparo.contador = contadorPreparo.contador + 1;
+
+                $("#formulario-preparo").slideUp();
+                console.log(response);
+                document.getElementById('passo-textarea').value = '';
+
+                $('ul#listagem-passos').append("<li class='list-group-item'>" + contadorPreparo.contador + "º " + descricao + "</li>")
+            },
+            error: function (response) {
+                alert(idReceita.id);
+            }
+        });
+    });
 });

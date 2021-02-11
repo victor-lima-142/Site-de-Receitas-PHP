@@ -4,18 +4,22 @@
         <button class="btn text-primary" id="adicionar-botao">
             <i class="material-icons" type="button">add_circle_outline</i>
         </button>
+        <button class="btn text-primary" id="excluir-botao">
+            <i class="material-icons" type="button">remove_circle_outline</i>
+        </button>
     </div>
     <div class="mb-3" id="formulario-ingrediente">
         <form method="POST" class="mt-3 w-100">
             <div class="d-flex w-100">
                 <div class="d-block w-100">
                     <label for="">Nome do ingrediente</label>
-                    <input type="text" id="ingrediente" name="ingrediente" placeholder="Chá" class="form-control w-100">
+                    <input type="text" required id="ingrediente" name="ingrediente" placeholder="Chá"
+                        class="form-control w-100">
                 </div>
                 <div class="w-25"></div>
                 <div class="d-block w-100">
                     <label for="">Quantidade</label>
-                    <input type="text" placeholder="Uma colher" id="quantidade" name="quantidade"
+                    <input type="text" required placeholder="Uma colher" id="quantidade" name="quantidade"
                         class="form-control w-100">
                 </div>
             </div>

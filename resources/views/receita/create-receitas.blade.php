@@ -5,11 +5,18 @@
 @endsection
 
 @section('conteudo')
-    <div class="container mt-3 mb-3">
+    <div class="container mt-3 mb-5">
         <div class="modal-content">
             @include('forms.receita')
-            <hr class="dropdown-divider mt-4">
-            @include('forms.ingrediente')
+
+            <div id="segundo-passo-da-receita">
+                <hr class="dropdown-divider mt-4">
+                @include('forms.ingrediente')
+                <hr class="dropdown-divider mt-4">
+                @include('forms.preparo')
+            </div>
+
+
         </div>
     </div>
 

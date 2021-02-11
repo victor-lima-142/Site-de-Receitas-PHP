@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\IngredienteController;
+use App\Http\Controllers\PassoController;
 use App\Http\Controllers\ReceitaController;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
@@ -24,17 +25,18 @@ Route::get('/', [Controller::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/criar-receita', function () {
-        $categorias = Categoria::all();
-        return view('receita.create-receitas', compact('categorias'));
+        return view('receita.create-receitas');
     })->name('receita.view-criar');
 
     Route::post('/criar-receita', [ReceitaController::class, "store"])->name('receita.post');
 
-    Route::post('/excluir-receita/{id}', [ReceitaController::class, "delete"]);
+    Route::get('/excluir-receita/{id}', [ReceitaController::class, "delete"]);
 
     Route::get('/receita/{receita}', [ReceitaController::class, 'info']);
 
     Route::post('/adicionar-ingrediente', [IngredienteController::class, 'store'])->name('ingredientes.adicionar');
+    
+    Route::post('/adicionar-passo', [PassoController::class, 'store']);
 
     Route::get('/minhas-receitas/{user}', [ReceitaController::class, 'minhasReceitas']);
 });
